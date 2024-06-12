@@ -1,5 +1,2 @@
-please download data from:
-
-	https://pan.baidu.com/s/1hakfuuwdS8xl7NyxlWzRiQ
-
-and unzip it in this floder.
+Download data.pkl and word_embedding.pkl and place them here
+Alternatively, run the scripts to create the files yourself

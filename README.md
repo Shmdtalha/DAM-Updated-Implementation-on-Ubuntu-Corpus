@@ -1,5 +1,15 @@
-# DAM-Updated-Implementation-on-Ubuntu-Corpus
+# DAM-Updated Implementation on Ubuntu Corpus
 This repository contains the updated implementation of Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network (DAM)
+
+## Download Preprocessing Files
+Download the files below if you do not wish to preprocess the data. \
+[word_embedding.pkl](https://drive.google.com/file/d/1jSBQsdF5Awk8IDKpJjUtJHR83RJfWYBj/view?usp=sharing) \
+[data.pkl](https://drive.google.com/file/d/1-9BXvk7aCDS70G1MfWH6aRe0cXONW1vh/view?usp=sharing) 
+
+Please note that these files may not work with older versions of Python. If you wish to work in a different version or dataset, preprocess the data with the steps below.
+## Dataset
+If you wish to preprocess the data, you may download the dataset here: [Ubuntu Dialogue Corpus](https://drive.google.com/drive/folders/1cm1v3njWPxG5-XhEUpGH25TMncaPR7OM?usp=sharing) 
+
 ## Preprocessing
 1. Create word_embedding.pkl \
 You might have to modify your file paths in `word_embedding.py`. This is only for the files in the dataset.
@@ -14,12 +24,16 @@ You might have to modify your file paths in `data_.py`. This is only for the fil
 ```
 This will create a file called data.pkl.The path should be /data/ubuntu/data.pkl
 ## Training
-Training will begin after running the line below
+Training will begin after running the shell file
 ```python
-sh run.sh
+!sh run.sh
 ```
+Remember to save the model for future use.
 ## Evaluation
-To evaluate the model, run this
+To evaluate the model, simply run the line below
 ```python
 !python /utils/evaluation.py
 ```
+## Acknowledgments
+[DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \
+[Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network](https://aclanthology.org/P18-1103.pdf)

@@ -28,11 +28,10 @@ Training will begin after running the shell file
 ```python
 !sh run.sh
 ```
-Remember to save the model for future use.
 ## Evaluation
-To evaluate the model, simply run the line below
+To evaluate the model, you must first set the `init_model` flag in main.py. After this, you may run the shell file.
 ```python
-!python /utils/evaluation.py
+!sh run.sh
 ```
 ## Acknowledgments
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \

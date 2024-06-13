@@ -22,6 +22,8 @@ def evaluate(file_path):
     data = []
     x=0
     total_num=0
+    sum_m_a_p=0
+    m_a_p=0
     with open(file_path, 'r') as file:
         for line in file:
             line = line.strip()
@@ -31,12 +33,12 @@ def evaluate(file_path):
                 continue
             
             data.append((float(tokens[0]), int(tokens[1])))
-            if i % 10 == 9:
+            if x % 10 == 9:
                 total_num += 1
                 total_num += 1
-                sum_m_a_p += m_a_p
                 m_a_p= mean_average_precision(data)
-            i += 1
+                sum_m_a_p += m_a_p
+            x += 1
                 
     p_at_1_in_2 = 0.0
     p_at_1_in_10 = 0.0

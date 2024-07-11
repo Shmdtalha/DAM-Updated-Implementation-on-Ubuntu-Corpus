@@ -1,6 +1,6 @@
 # DAM-Updated Implementation on Ubuntu Corpus
 This repository contains the updated implementation of Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network (DAM)
-This model is compaible with python 2.7.
+This model is compaible with python 2.7 and tnsorflow 1.11.
 ## Download Preprocessing Files
 Download the files below if you do not wish to preprocess the data. \
 [word_embedding.pkl](https://drive.google.com/file/d/1jSBQsdF5Awk8IDKpJjUtJHR83RJfWYBj/view?usp=sharing) \

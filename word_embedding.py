@@ -5,9 +5,9 @@ import os
 
 def load_vocab(vocab_file):
     vocab = {}
-    with open(vocab_file, 'r', encoding='utf-8') as file:
+    with open(vocab_file, 'r') as file:
         for line in file:
-            word, index = line.strip().split('\t')
+            word, index = line.decode('utf-8').strip().split('\t')
             vocab[word] = int(index)
     return vocab
 
@@ -19,14 +19,14 @@ class SentenceIterator:
         files = ['train.txt', 'valid.txt', 'test.txt']
         for file in files:
             path = os.path.join(self.dirname, file)
-            with open(path, encoding='utf-8') as f:
+            with open(path) as f:
                 for line in f:
-                    dialogue = line.strip().split('\t')[1]
+                    dialogue = line.decode('utf-8').strip().split('\t')[1]
                     yield dialogue.split()
 
 def train_embeddings(data_dir):
     sentences = SentenceIterator(data_dir)
-    model = Word2Vec(sentences, vector_size=200, window=5, min_count=5, workers=4)
+    model = Word2Vec(sentences, size=200, window=5, min_count=5, workers=4)
     return model
 
 #Modify paths here if necessary

@@ -4,30 +4,30 @@ from gensim.models import Word2Vec
 import os
 
 def load_vocab(vocab_file):
-    vocab = {}
-    with open(vocab_file, 'r') as file:
-        for line in file:
-            word, index = line.decode('utf-8').strip().split('\t')
-            vocab[word] = int(index)
-    return vocab
+	vocab = {}
+	with open(vocab_file, 'r') as file:
+		for line in file:
+			word, index = line.decode('utf-8').strip().split('\t')
+			vocab[word] = int(index)
+	return vocab
 
 class SentenceIterator:
-    def __init__(self, dirname):
-        self.dirname = dirname
+	def __init__(self, dirname):
+		self.dirname = dirname
 
-    def __iter__(self):
-        files = ['train.txt', 'valid.txt', 'test.txt']
-        for file in files:
-            path = os.path.join(self.dirname, file)
-            with open(path) as f:
-                for line in f:
-                    dialogue = line.decode('utf-8').strip().split('\t')[1]
-                    yield dialogue.split()
+	def __iter__(self):
+		files = ['train.txt', 'valid.txt', 'test.txt']
+		for file in files:
+			path = os.path.join(self.dirname, file)
+			with open(path) as f:
+				for line in f:
+					dialogue = line.decode('utf-8').strip().split('\t')[1]
+					yield dialogue.split()
 
 def train_embeddings(data_dir):
-    sentences = SentenceIterator(data_dir)
-    model = Word2Vec(sentences, size=200, window=5, min_count=5, workers=4)
-    return model
+	sentences = SentenceIterator(data_dir)
+	model = Word2Vec(sentences, size=200, window=5, min_count=5, workers=4)
+	return model
 
 #Modify paths here if necessary
 vocab_file = 'data/ubuntu/vocab.txt'
@@ -38,8 +38,8 @@ word2vec_model = train_embeddings(data_dir)
 
 embedding_matrix = np.zeros((len(vocab) + 1, 200))
 for word, idx in vocab.items():
-    if word in word2vec_model.wv:
-        embedding_matrix[idx] = word2vec_model.wv[word]
+	if word in word2vec_model.wv:
+		embedding_matrix[idx] = word2vec_model.wv[word]
 
 with open('./data/word_embedding.pkl', 'wb') as f:
-    pickle.dump(embedding_matrix, f)
+	pickle.dump(embedding_matrix, f)

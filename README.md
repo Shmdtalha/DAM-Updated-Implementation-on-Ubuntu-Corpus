@@ -1,38 +1,71 @@
 # DAM-Updated Implementation on Ubuntu Corpus
-This repository contains the updated implementation of Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network (DAM)
-This model is compaible with python 2.7 and tnsorflow 1.11.
-## Download Preprocessing Files
-Download the files below if you do not wish to preprocess the data. \
-[word_embedding.pkl](https://drive.google.com/file/d/1jSBQsdF5Awk8IDKpJjUtJHR83RJfWYBj/view?usp=sharing) \
-[data.pkl](https://drive.google.com/file/d/1-9BXvk7aCDS70G1MfWH6aRe0cXONW1vh/view?usp=sharing) 
 
-Please note that these files may not work with older versions of Python. If you wish to work in a different version or dataset, preprocess the data with the steps below.
-## Dataset
-If you wish to preprocess the data, you may download the dataset here: [Ubuntu Dialogue Corpus](https://drive.google.com/drive/folders/1cm1v3njWPxG5-XhEUpGH25TMncaPR7OM?usp=sharing) 
+This repository contains the updated implementation of Multi-Turn Response
+Selection for Chatbots with Deep Attention Matching Network (DAM)
+
+All the python files in this repository must be run with python 2.7, and 
+tensorflow 1.10 or a similar version.
 
 ## Preprocessing
-1. Create word_embedding.pkl \
-You might have to modify your file paths in `word_embedding.py`. This is only for the files in the dataset.
-```python
-!python word_embedding.py
-```
-This will create a file called word_embedding.pkl. Place this in the data directory.
-2. Create data.pkl \
-You might have to modify your file paths in `data_.py`. This is only for the files in the dataset.
-```python
-!python data_.py
-```
-This will create a file called data.pkl.The path should be /data/ubuntu/data.pkl
+
+1. place the dataset in `data/ubuntu/`. For example, train.txt will go to:
+	`data/ubuntu/train.txt`.
+2. generate word embeddings by running `python word_embedding.py`
+3. generate data.pkl file by running `python data.py` 
+
 ## Training
-Training will begin after running the shell file
+
+Make sure the `main.py` file has the following lines at end not commented:
+
 ```python
-!sh run.sh
+model = net.Net(conf)
+train.train(conf, model)
 ```
+
+Run the `main.py` file as: `python main.py`
+
+Or if you would like to save the training log:
+
+```bash
+python -u main.py 2>&1 | tee trainlog.txt
+```
+
 ## Evaluation
-To evaluate the model, you must first set the `init_model` flag in main.py. After this, you may run the shell file.
+
+Set the `init_model` conf paramter in `main.py` to the path of saved checkpoint.
+
+For example:
+
 ```python
-!sh run.sh
+conf = {
+    "data_path": "./data/ubuntu/data.pkl",
+    "save_path": "./output/ubuntu/temp/",
+    "word_emb_init": "./data/word_embedding.pkl",
+    "init_model": "./output/ubuntu/temp/model.ckpt.1"
+		...
+}
 ```
+
+Then comment the following line in `main.py`:
+
+```python
+train.train(conf, model)
+```
+
+And uncomment the following line:
+
+```python
+test.test(conf, model)
+```
+
+Run the evaluation as `python main.py`
+
+Or if you would like to save the testing log:
+
+```bash
+python -u main.py 2>&1 | tee testlog.txt
+```
+
 ## Acknowledgments
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \
 [Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network](https://aclanthology.org/P18-1103.pdf)

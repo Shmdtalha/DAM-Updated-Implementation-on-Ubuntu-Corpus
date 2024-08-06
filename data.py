@@ -38,7 +38,6 @@ def process_file(file_path, vocab, response_dict, enforce=0):
 			utt = row[1]
 			valids = row[2]
 			invalids = row[3]
-			isValid = valids != "NA"
 			splits = [[], []]
 			if valids != "NA":
 				splits[0] = [int(x) for x in valids.split("|")]
@@ -65,10 +64,8 @@ def process_file(file_path, vocab, response_dict, enforce=0):
 
 def create_data_pkl(vocab_file, train_file, test_file, valid_file, output_file, response_file):
 	vocab = load_vocab(vocab_file)
-	EOS = vocab['eot']
-	files = [train_file, test_file, valid_file]
-
 	response_dict = build_response_dict(response_file)
+
 	train_y, train_c, train_r = process_file(train_file, vocab, response_dict)
 	test_y, test_c, test_r = process_file(test_file, vocab, response_dict, 10)
 	valid_y, valid_c, valid_r = process_file(valid_file, vocab, response_dict, 10)
@@ -88,7 +85,6 @@ def create_data_pkl(vocab_file, train_file, test_file, valid_file, output_file, 
 	with open(output_file, 'wb') as f:
 		pickle.dump(data, f)
 
-#Modify these paths depending on where your data has been stored
 vocab_file = 'data/ubuntu/vocab.txt'
 train_file = 'data/ubuntu/train.txt'
 test_file = 'data/ubuntu/test.txt'

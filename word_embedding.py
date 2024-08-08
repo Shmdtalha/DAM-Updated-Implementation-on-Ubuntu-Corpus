@@ -16,7 +16,7 @@ class SentenceIterator:
 		self.dirname = dirname
 
 	def __iter__(self):
-		files = ['train.txt', 'valid.txt', 'test.txt']
+		files = ['train.txt', 'valid.txt', 'test.txt', 'responses.txt']
 		for file in files:
 			path = os.path.join(self.dirname, file)
 			with open(path) as f:

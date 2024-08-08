@@ -12,8 +12,20 @@ tensorflow 1.10 or a similar version.
 	`data/ubuntu/train.txt`.
 2. generate word embeddings by running `python word_embedding.py`
 3. generate data.pkl file by running `python data.py` 
+4. note the value of `eos` printed by `data.py`. This value will be different
+	for each dataset (for each `vocab.txt` to be precise)
 
 ## Training
+
+First enter the noted value of `eos` from `data.py` into `main.py`:
+
+```python
+conf = {
+	...
+	"_EOS_": valueHere
+	...
+}
+```
 
 Make sure the `main.py` file has the following lines at end not commented:
 
@@ -38,11 +50,11 @@ For example:
 
 ```python
 conf = {
-    "data_path": "./data/ubuntu/data.pkl",
-    "save_path": "./output/ubuntu/temp/",
-    "word_emb_init": "./data/word_embedding.pkl",
-    "init_model": "./output/ubuntu/temp/model.ckpt.1"
-		...
+	"data_path": "./data/ubuntu/data.pkl",
+	"save_path": "./output/ubuntu/temp/",
+	"word_emb_init": "./data/word_embedding.pkl",
+	"init_model": "./output/ubuntu/temp/model.ckpt.1"
+	...
 }
 ```
 

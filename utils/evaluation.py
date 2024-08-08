@@ -35,7 +35,6 @@ def evaluate(file_path):
 			data.append((float(tokens[0]), int(tokens[1])))
 			if x % 10 == 9:
 				total_num += 1
-				total_num += 1
 				m_a_p= mean_average_precision(data)
 				sum_m_a_p += m_a_p
 			x += 1

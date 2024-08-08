@@ -89,6 +89,7 @@ def process_file(file_path, enforce=0):
 		print("{} Records skipped due to enforce={} is = {}".format(
 			fbase, enforce, skipCount
 			))
+	print("{} -> size = {}".format(fbase, len(y)))
 	return y, c, r
 
 if __name__ == "__main__":

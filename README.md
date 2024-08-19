@@ -78,6 +78,13 @@ Or if you would like to save the testing log:
 python -u main.py 2>&1 | tee testlog.txt
 ```
 
+Run the following to calculate Top-1 Precision:
+
+```bash
+python precision.py
+```
+
 ## Acknowledgments
+
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \
 [Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network](https://aclanthology.org/P18-1103.pdf)

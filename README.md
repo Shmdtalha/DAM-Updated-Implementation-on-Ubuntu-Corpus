@@ -17,7 +17,7 @@ tensorflow 1.10 or a similar version.
 
 ## Training
 
-First enter the noted value of `eos` from `data.py` into `main.py`:
+First enter the noted value of `eou` from `data.py` into `main.py`:
 
 ```python
 conf = {
@@ -26,6 +26,8 @@ conf = {
 	...
 }
 ```
+
+This value of `_EOS_` should match that of `__eou__` in `vocab.txt`.
 
 Make sure the `main.py` file has the following lines at end not commented:
 

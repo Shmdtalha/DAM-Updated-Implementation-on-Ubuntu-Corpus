@@ -15,6 +15,12 @@ tensorflow 1.10 or a similar version.
 4. note the value of `eos` printed by `data.py`. This value will be different
 	for each dataset (for each `vocab.txt` to be precise)
 
+> [!NOTE]
+> The evaluation function is hardcoded to expect 1 valid response, and 9
+> invalid responses, totalling 10 responses. However there are 118-117 such
+> lines in UDC V2 `test.txt` and `valid.txt` where there are 8 or 9 responses
+> total. We have made it so the `data.py` script will ignore such lines.
+
 ## Training
 
 First enter the noted value of `eou` from `data.py` into `main.py`:

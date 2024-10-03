@@ -12,7 +12,7 @@ tensorflow 1.10 or a similar version.
 	`data/ubuntu/train.txt`.
 2. generate word embeddings by running `python word_embedding.py`
 3. generate data.pkl file by running `python data.py` 
-4. note the value of `eos` printed by `data.py`. This value will be different
+4. note the value of `eou` printed by `data.py`. This value will be different
 	for each dataset (for each `vocab.txt` to be precise)
 
 > [!NOTE]

@@ -44,11 +44,8 @@ def tokenize(utt):
 	arr = [vocab.get(tok, vocab["UNKNOWN"]) for tok in utt.split()]
 	i = 0
 	while i < len(arr):
-		if i + 1 < len(arr) and arr[i] == eot and arr[i + 1] == eot:
-			ret.append(eos)
-			i += 2
-			continue
-		ret.append(arr[i])
+		if arr[i] != eot:
+			ret.append(arr[i])
 		i += 1
 	return ret
 
@@ -114,4 +111,4 @@ if __name__ == "__main__":
 
 	with open(output_file, 'wb') as f:
 		pickle.dump(data, f)
-	print("eos: {}\teot:{}\teou:{}".format(eos, eot, eou))
+	print("eot:{}\teou:{}".format(eot, eou))

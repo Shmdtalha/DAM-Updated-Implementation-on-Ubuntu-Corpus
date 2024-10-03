@@ -36,7 +36,7 @@ conf = {
 	"attention_type": "dot",
 
 	"learning_rate": 1e-3,
-	"vocab_size": 434512,
+	"vocab_size": 205794,
 	"emb_size": 200,
 	"batch_size": 256, #200 for test
 
@@ -45,7 +45,7 @@ conf = {
 
 	"max_to_keep": 1,
 	"num_scan_data": 2,
-	"_EOS_": 28270, #1 for douban data
+	"_EOS_": 2, # maps to __eou__ in vocab.txt
 	"final_n_class": 1,
 }
 

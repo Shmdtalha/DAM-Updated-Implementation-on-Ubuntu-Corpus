@@ -92,6 +92,13 @@ Run the following to calculate Top-1 Precision:
 python precision.py
 ```
 
+## ROUGE
+
+Run the following script to get the ROUGE scores:
+```bash
+python compute_rouge.py --num_of_responses 10
+```
+
 ## Acknowledgments
 
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \

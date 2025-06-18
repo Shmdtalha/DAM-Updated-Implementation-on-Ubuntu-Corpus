@@ -105,6 +105,14 @@ Replace the `bin/train_and_evaluate.py` file with
 `bin/train_and_evaluate.flops.py`, and run training, to calculate FLOPs and
 Trainable Parameters Count for the model.
 
+## Power Usage
+
+To log data about power usage during training, set-up `main.py` for training,
+instructions above, then run:
+```bash
+./measure.sh
+```
+
 ## Acknowledgments
 
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \

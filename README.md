@@ -99,6 +99,12 @@ Run the following script to get the ROUGE scores:
 python compute_rouge.py --num_of_responses 10
 ```
 
+## FLOPs and Trainable Params Count
+
+Replace the `bin/train_and_evaluate.py` file with
+`bin/train_and_evaluate.flops.py`, and run training, to calculate FLOPs and
+Trainable Parameters Count for the model.
+
 ## Acknowledgments
 
 [DAM GitHub Repository](https://github.com/baidu/Dialogue/tree/master/DAM) \

@@ -1,22 +1,35 @@
-def calculate_top1_precision(file_path):
-	with open(file_path, 'r') as file:
-		lines = file.readlines()
+import sys
+import math
 
-	data = [(float(line.split()[0]), int(line.split()[1])) for line in lines]
+def chunker(file_path : str, chunk_size : int):
+    with open(file_path, 'r') as f:
+        chunk = []
+        for line in f:
+            chunk.append(line.rstrip('\n'))
+            if len(chunk) == chunk_size:
+                yield chunk
+                chunk = []
+        if chunk:
+            yield chunk
 
-	total_contexts = 0
-	correct_top1 = 0
+def sigmoid(x: float) -> float:
+    return 1 / (1 + math.exp(-x))
 
-	for i in range(0, len(data), 10):
-		context = data[i : i+10]
-		_, max_valid = max(context, key=lambda x: x[0])
-		total_contexts += 1
-		if max_valid == 1:
-			correct_top1 += 1
+def precision_calculate(file_path : str) -> float:
+    predicted_positive = 0
+    positive_correct = 0
+    for lines in chunker(file_path, 10):
+        splited_lines = [line.split("\t") for line in lines]
+        scores = [sigmoid(float(split[0])) for split in splited_lines]
+        labels = [int(split[1]) for split in splited_lines]
+        for score, label in zip(scores, labels):
+            if score > 0.5:
+                predicted_positive += 1
+                if label > 0:
+                    positive_correct += 1
+    return float(positive_correct) / (predicted_positive + 1e-12)
 
-	# Calculate Top-1 Precision
-	top1_precision = correct_top1 / total_contexts
-	return top1_precision
-
-precision = calculate_top1_precision('output/ubuntu/temp/score.test'  )
-print("Top-1 Precision: {}".format(precision))
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(f"Usage: {sys.argv[0]} path/to/out.txt")
+    print(precision_calculate(sys.argv[1]))

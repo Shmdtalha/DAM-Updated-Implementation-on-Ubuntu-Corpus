@@ -86,10 +86,10 @@ Or if you would like to save the testing log:
 python -u main.py 2>&1 | tee testlog.txt
 ```
 
-Run the following to calculate Top-1 Precision:
+Run the following to calculate Precision:
 
 ```bash
-python precision.py
+python precision.py data/output/ubuntu/temp/score.test
 ```
 
 ## ROUGE
